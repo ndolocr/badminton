@@ -10,9 +10,9 @@ class Trainer(models.Model):
     )
 
     GENDER_CHOICES = (
-        ("expert", "expert"),
-        ("beginner", "beginner"),
-        ("intermediate", "intermediate")
+        ("male", "male"),
+        ("female", "female"),
+        ("other", "other")
     )
     name = models.CharField(max_length=255, null=True)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True)
