@@ -10,7 +10,7 @@ class Trainee(models.Model):
     )
     name = models.CharField(max_length=255, null=True)
     gender = models.CharField(max_length=20, null=True)
-    dob = models.DateTimeField(auto_now=False, null=True)
+    dob = models.DateField(auto_now=False, null=True)
     trailer_level = models.CharField(max_length=30, choices=TRAINEE_LEVEL_CHOICES, null=False)
 
     def __str__(self):
