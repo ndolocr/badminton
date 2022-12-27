@@ -13,7 +13,7 @@ class Training(models.Model):
     trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, null=False)
     start_time = models.TimeField(auto_now=False, auto_now_add=False,null=False)
     end_time = models.TimeField(auto_now=False, auto_now_add=False,null=False)
-    training_date = models.DateTimeField(auto_now_add=False, auto_now=False, null=False)
+    training_date = models.DateField(auto_now_add=False, auto_now=False, null=False)
     training_type = models.CharField(max_length=30, choices=TRAINING_TYPE_CHOICES, null=False)
 
     def __str__(self):
