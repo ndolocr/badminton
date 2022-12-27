@@ -1,2 +1,6 @@
 # Ignore Database
 db.sqlite3
+# Migration files
+migrations/
+# Byte-compiled 
+__pycache__/
