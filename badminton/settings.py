@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Installed Apps
     'trainer',
     'trainee',
+    'equipment',
 ]
 
 MIDDLEWARE = [
