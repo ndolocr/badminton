@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'trainee',
     'facility',
     'equipment',
+    'sports_gear',
 ]
 
 MIDDLEWARE = [
