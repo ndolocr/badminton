@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'trainer',
     'trainee',
     'facility',
+    'training',
     'equipment',
     'sports_gear',
 ]
