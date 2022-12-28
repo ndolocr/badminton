@@ -17,5 +17,5 @@ class Training(models.Model):
     training_type = models.CharField(max_length=30, choices=TRAINING_TYPE_CHOICES, null=False)
 
     def __str__(self):
-        training = self.trainer + " trained " + self.trainee + " on " + self.training_date
+        training = f"{self.trainer} -  trained  {self.trainee},  on  {self.training_date} from {self.start_time} to {self.end_time}"
         return training
