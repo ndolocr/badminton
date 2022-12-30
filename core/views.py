@@ -34,3 +34,8 @@ def show_pyvis_graph(request):
 
     context = {}
     return render(request, "graph.html", context)
+
+# Creatihg landing page
+def index(request):
+    context = {}
+    return render(request, 'core/index.html', context)
