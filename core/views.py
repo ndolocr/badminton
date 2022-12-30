@@ -19,10 +19,15 @@ def show_pyvis_graph(request):
                 trainer = network.add_node(training_set.trainer.name, title='Trainer', color="#FF0")
                 for trainee_set in training:
                     if trainee_set.trainer == training_set.trainer:
-                        print("Trainee: --->", trainee_set.trainee)
-                        trainee = network.add_node(trainee_set.trainee.name, title='Trainee')
-                        training_link = network.add_edge(training_set.trainer.name, trainee_set.trainee.name, title='Trains')
-                        print("Edge: -->", training_link)
+                        if trainee_set.training_type == "beginner":
+                            trainee = network.add_node(trainee_set.trainee.name, title='Trainee')
+                            training_link = network.add_edge(training_set.trainer.name, trainee_set.trainee.name, title='Trains', label="Beginner Training", color="#F00")
+                        elif trainee_set.training_type == "expert":
+                            trainee = network.add_node(trainee_set.trainee.name, title='Trainee')
+                            training_link = network.add_edge(training_set.trainer.name, trainee_set.trainee.name, title='Trains', label="Expert Training", color="#33ff3f ")
+                        elif trainee_set.training_type == "intermediate":
+                            trainee = network.add_node(trainee_set.trainee.name, title='intermediate')
+                            training_link = network.add_edge(training_set.trainer.name, trainee_set.trainee.name, title='Trains', label="Expert Training", color=" #335bff ")    
         network.save_graph(str(settings.BASE_DIR)+'/templates/pyvis_graph.html')
     except Exception as e:
         print(e)
