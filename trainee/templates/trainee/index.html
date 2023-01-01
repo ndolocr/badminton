@@ -1,0 +1,34 @@
+{% include 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2> Trainees </h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Name </th>
+                    <th> DOB </th>
+                    <th> Gender </th>
+                    <th> Training Level </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trainee in trainees %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{trainee.name}} </td>
+                    <td> {{ trainee.dob}} </td>
+                    <td> {{trainee.gender}} </td>
+                    <td> {{trainee.trailer_level}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
