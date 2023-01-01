@@ -21,5 +21,6 @@ from core.views import show_pyvis_graph
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('/', include('core.urls')),
+    path('trainees', include('trainee.urls')),
     path('trainers', include('trainer.urls')),
 ]
