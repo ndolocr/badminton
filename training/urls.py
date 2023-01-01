@@ -1,6 +1,8 @@
 from django.urls import path
-from training.models import Training
+from training.views import index
+
+app_name = 'training'
 
 urlpatterns = [
-    
+    path('', index, name='index')
 ]
