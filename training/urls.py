@@ -1,7 +1,8 @@
 from django.urls import path
 from training.views import (index, expert_training, beginner_training, 
                             intermediate_training, add_expert_training,
-                            add_beginner_training,add_intermediate_training)
+                            add_beginner_training,add_intermediate_training,
+                            expert_training_graph)
 
 app_name = 'training'
 
@@ -13,4 +14,6 @@ urlpatterns = [
     path('add_expert_training', add_expert_training, name='add_expert_training'),
     path('add_beginner_training', add_beginner_training, name='add_beginner_training'),
     path('add_intermediate_training', add_intermediate_training, name='add_intermediate_training'),
+    
+    path('expert_training_graph', expert_training_graph, name='expert_training_graph'),
 ]
