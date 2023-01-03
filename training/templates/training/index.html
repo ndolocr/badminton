@@ -29,7 +29,7 @@
             <a href="{% url 'training:add_beginner_training' %}" class="btn btn-success"> + Beginner Training</a>
         </div>
         <div class="col-md-2">
-            <a href="#" class="btn btn-warning"> View Graph</a>
+            <a href="{% url 'training:beginner_training_graph' %}" class="btn btn-warning"> View Graph</a>
         </div>
     {% elif training_type == "intermediate" %}
         <div class="col-md-2">
