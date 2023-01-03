@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from training.models import Training
 
+from trainer.models import Trainer
+from trainee.models import Trainee
+from training.models import Training
 # Create your views here.
 
 def index(request):
@@ -38,3 +40,17 @@ def intermediate_training(request):
     }
 
     return render(request, 'training/index.html', context)
+
+def add_expert_trianing(request):
+    if request.method == 'POST':
+        pass
+    else:
+        trainers = Trainer.objects.filter(trailer_level = "expert")
+        trainees = Trainee.objects.filter(trailer_level = "expert")
+
+        context = {
+            "trainers": trainers,
+            "trainees": trainees
+        }
+
+        return render(request, 'training/add_expert_training.html', context)
