@@ -9,10 +9,10 @@
             <a href="{% url 'training:add_expert_training' %}" class="btn btn-primary"> + Expert Training</a>
         </div>
         <div class="col-md-2">
-            <a href="#" class="btn btn-success"> + Beginner Training</a>
+            <a href="{% url 'training:add_beginner_training' %}" class="btn btn-success"> + Beginner Training</a>
         </div>
         <div class="col-md-2">
-            <a href="#" class="btn btn-info"> + Intermediate Training</a>
+            <a href="{% url 'training:add_intermediate_training' %}" class="btn btn-info"> + Intermediate Training</a>
         </div>
         <div class="col-md-2">
             <a href="#" class="btn btn-warning"> View Graph</a>
@@ -26,14 +26,14 @@
         </div>
     {% elif training_type == "begginer" %}
         <div class="col-md-2">
-            <a href="#" class="btn btn-success"> + Beginner Training</a>
+            <a href="{% url 'training:add_beginner_training' %}" class="btn btn-success"> + Beginner Training</a>
         </div>
         <div class="col-md-2">
             <a href="#" class="btn btn-warning"> View Graph</a>
         </div>
     {% elif training_type == "intermediate" %}
         <div class="col-md-2">
-            <a href="#" class="btn btn-info"> + Intermediate Training</a>
+            <a href="{% url 'training:add_intermediate_training' %}" class="btn btn-info"> + Intermediate Training</a>
         </div>
         <div class="col-md-2">
             <a href="#" class="btn btn-warning"> View Graph</a>

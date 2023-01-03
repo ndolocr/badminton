@@ -78,3 +78,81 @@ def add_expert_training(request):
         }
 
         return render(request, 'training/add_expert_training.html', context)
+
+def add_beginner_training(request):
+    if request.method == 'POST':
+        print("Begin saving ")
+        trainee = request.POST.get("trainee")
+        trainer = request.POST.get("trainer")
+        end_time = request.POST.get("end_time")
+        start_time = request.POST.get("start_time")
+        training_date = request.POST.get("training_date")
+
+        try:
+            training = Training.objects.create(
+                trainee_id = trainee,
+                trainer_id = trainer,
+                end_time = end_time,
+                start_time = start_time,
+                training_type = "beginner",
+                training_date = training_date,
+            )
+        except Exception as e:
+            print("ERROR on Saving Training ", e)
+        
+        trainings = Training.objects.filter(training_type = 'beginner')
+        context = {
+            "trainings": trainings,
+            "training_type": "beginner",
+        }
+
+        return render(request, 'training/index.html', context)
+    else:
+        trainers = Trainer.objects.filter(trailer_level = "beginner")
+        trainees = Trainee.objects.filter(trailer_level = "beginner")
+
+        context = {
+            "trainers": trainers,
+            "trainees": trainees
+        }
+
+        return render(request, 'training/add_beginner_training.html', context)
+
+def add_intermediate_training(request):
+    if request.method == 'POST':
+        print("Begin saving ")
+        trainee = request.POST.get("trainee")
+        trainer = request.POST.get("trainer")
+        end_time = request.POST.get("end_time")
+        start_time = request.POST.get("start_time")
+        training_date = request.POST.get("training_date")
+
+        try:
+            training = Training.objects.create(
+                trainee_id = trainee,
+                trainer_id = trainer,
+                end_time = end_time,
+                start_time = start_time,
+                training_type = "intermediate",
+                training_date = training_date,
+            )
+        except Exception as e:
+            print("ERROR on Saving Training ", e)
+        
+        trainings = Training.objects.filter(training_type = 'intermediate')
+        context = {
+            "trainings": trainings,
+            "training_type": "intermediate",
+        }
+
+        return render(request, 'training/index.html', context)
+    else:
+        trainers = Trainer.objects.filter(trailer_level = "beginner")
+        trainees = Trainee.objects.filter(trailer_level = "beginner")
+
+        context = {
+            "trainers": trainers,
+            "trainees": trainees
+        }
+
+        return render(request, 'training/add_intermediate_training.html', context)

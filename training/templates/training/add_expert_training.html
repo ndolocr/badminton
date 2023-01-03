@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'training:add_expert_training' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="trainer">Trainer</label>
@@ -22,8 +22,8 @@
               </div>
 
               <div class="form-group">
-                <label for="trainer">Trainee</label>
-                <select class="form-control" id="trainer" name="trainer">
+                <label for="trainee">Trainee</label>
+                <select class="form-control" id="trainee" name="trainee">
                     <option disabled="disabled" selected="true" ></option>
                     {% for trainee in trainees %}
                         <option value="{{trainee.id}}"> {{trainee.name}} </option>
@@ -32,17 +32,17 @@
               </div>
 
               <div class="form-group">
-                <label for="start_time">Start Time</label>
+                <label for="start_time">Start Time ( HH:MM:SS ) </label>
                 <input type="text" class="form-control" id="start_time" name="start_time" aria-describedby="start_time" placeholder="Enter Start Time">
               </div>
 
               <div class="form-group">
-                <label for="end_time">End Time</label>
+                <label for="end_time">End Time ( HH:MM:SS ) </label>
                 <input type="text" class="form-control" id="end_time" name="end_time" aria-describedby="end_time" placeholder="Enter End Time">                
               </div>
 
               <div class="form-group">
-                <label for="training_date">Training Date</label>
+                <label for="training_date">Training Date ( YYYY-MM-DD ) </label>
                 <input type="text" class="form-control" id="training_date" name="training_date" aria-describedby="training_date" placeholder="Enter Training Date">
               </div>
 
