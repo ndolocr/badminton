@@ -1,0 +1,38 @@
+{% include 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2> Trainers </h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Trainer </th>
+                    <th> Trainee </th>
+                    <th> Training Start Time </th>
+                    <th> Training End Time </th>
+                    <th> Date </th>
+                    <th> Training Type </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for training in trainings %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{training.trainer}} </td>
+                    <td> {{training.trainee}} </td>
+                    <td> {{training.start_time}} </td>
+                    <td> {{training.end_time}} </td>
+                    <td> {{training.training_date}} </td>
+                    <td> {{training.training_type}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
