@@ -215,7 +215,7 @@ def intermediate_training_graph(request):
                 print("Trainer: ", trainer)
                 trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
                 print("Trainee: ", trainee)
-                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Beginner Training", color="#F00")
+                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Intermediate Training", color="#F00")
                 print("Link Created!")
         network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/intermediate_graph_creation.html')
     except Exception as e:
