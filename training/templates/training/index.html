@@ -19,7 +19,7 @@
         </div>
     {% elif training_type == "expert" %}
         <div class="col-md-2">
-            <a href="#" class="btn btn-primary"> + Expert Training</a>
+            <a href="{% url 'training:add_expert_training' %}" class="btn btn-primary"> + Expert Training</a>
         </div>
         <div class="col-md-2">
             <a href="#" class="btn btn-warning"> View Graph</a>

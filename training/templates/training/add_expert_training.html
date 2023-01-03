@@ -2,12 +2,19 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" style="text-align: center;">
+        <h2> Add Expert Training</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
         <form method="POST" action="">
             {% csrf_token %}
             <div class="form-group">
                 <label for="trainer">Trainer</label>
-                <select class="form-control" id="trainer">
+                <select class="form-control" id="trainer" name="trainer">
+                    <option disabled="disabled" selected="true" ></option>
                     {% for trainer in trainers %}
                         <option value="{{trainer.id}}"> {{trainer.name}} </option>
                     {% endfor %}
@@ -16,7 +23,8 @@
 
               <div class="form-group">
                 <label for="trainer">Trainee</label>
-                <select class="form-control" id="trainer">
+                <select class="form-control" id="trainer" name="trainer">
+                    <option disabled="disabled" selected="true" ></option>
                     {% for trainee in trainees %}
                         <option value="{{trainee.id}}"> {{trainee.name}} </option>
                     {% endfor %}
@@ -25,25 +33,24 @@
 
               <div class="form-group">
                 <label for="start_time">Start Time</label>
-                <input type="text" class="form-control" id="start_time" aria-describedby="start_time" placeholder="Enter Start Time">
-                <small id="start_time" class="form-text text-muted">Start Time for Training.</small>
+                <input type="text" class="form-control" id="start_time" name="start_time" aria-describedby="start_time" placeholder="Enter Start Time">
               </div>
 
               <div class="form-group">
                 <label for="end_time">End Time</label>
-                <input type="text" class="form-control" id="end_time" aria-describedby="end_time" placeholder="Enter End Time">
-                <small id="end_time" class="form-text text-muted">End Time for Training.</small>
+                <input type="text" class="form-control" id="end_time" name="end_time" aria-describedby="end_time" placeholder="Enter End Time">                
               </div>
 
               <div class="form-group">
                 <label for="training_date">Training Date</label>
-                <input type="text" class="form-control" id="training_date" aria-describedby="training_date" placeholder="Enter Training Date">
-                <small id="training_date" class="form-text text-muted">Date for Training.</small>
+                <input type="text" class="form-control" id="training_date" name="training_date" aria-describedby="training_date" placeholder="Enter Training Date">
               </div>
 
 
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
+
+{% endblock %}
