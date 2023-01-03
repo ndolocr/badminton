@@ -41,7 +41,7 @@ def intermediate_training(request):
 
     return render(request, 'training/index.html', context)
 
-def add_expert_trianing(request):
+def add_expert_training(request):
     if request.method == 'POST':
         pass
     else:

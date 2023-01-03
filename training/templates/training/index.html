@@ -6,7 +6,7 @@
     </div>
     {% if training_type == "all" %}
         <div class="col-md-2">
-            <a href="#" class="btn btn-primary"> + Expert Training</a>
+            <a href="{% url 'training:add_expert_training' %}" class="btn btn-primary"> + Expert Training</a>
         </div>
         <div class="col-md-2">
             <a href="#" class="btn btn-success"> + Beginner Training</a>
