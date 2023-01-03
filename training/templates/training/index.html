@@ -1,9 +1,32 @@
 {% include 'base.html' %}
 {% block content %}
 <div class="row">
-    <div class="col-md-12">
-        <h2> Trainers </h2>
+    <div class="col-md-2">
+        <h2> Training </h2>
     </div>
+    {% if training_type == "all" %}
+        <div class="col-md-2">
+            <a href="#" class="btn btn-primary"> + Expert Training</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-success"> + Beginner Training</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info"> + Intermediate Training</a>
+        </div>
+    {% elif training_type == "expert" %}
+        <div class="col-md-2">
+            <a href="#" class="btn btn-primary"> + Expert Training</a>
+        </div>
+    {% elif training_type == "begginer" %}
+        <div class="col-md-2">
+            <a href="#" class="btn btn-success"> + Beginner Training</a>
+        </div>
+    {% elif training_type == "intermediate" %}
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info"> + Intermediate Training</a>
+        </div>
+    {% endif %}
 </div>
 <div class="row">
     <div class="col-md-12">
