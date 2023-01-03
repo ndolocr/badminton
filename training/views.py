@@ -203,6 +203,27 @@ def beginner_training_graph(request):
     context = {}
     return render(request, "beginner_graph.html", context)
 
+def intermediate_training_graph(request):
+    network = Network(height="100vh", width="100%", bgcolor="#eeeeee" )
+
+    try:
+        training_set = Training.objects.filter(training_type = "intermediate")
+
+        if training_set:
+            for training in training_set:
+                trainer = network.add_node(training.trainer.name, title="Trainer", color=" #335bff")
+                print("Trainer: ", trainer)
+                trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
+                print("Trainee: ", trainee)
+                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Beginner Training", color="#F00")
+                print("Link Created!")
+        network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/intermediate_graph_creation.html')
+    except Exception as e:
+        print(e)
+    
+    context = {}
+    return render(request, "intermediate_graph.html", context)
+
 
 def show_pyvis_graph(request):
     network = Network(height="100vh", width="100%", bgcolor="#eeeeee" )
