@@ -31,9 +31,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'training:index' %}">All</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Expert</a>
-                        <a class="dropdown-item" href="#">Beginner</a>                
-                        <a class="dropdown-item" href="#">Intermediate</a>
+                        <a class="dropdown-item" href="{% url 'training:expert' %}">Expert</a>
+                        <a class="dropdown-item" href="{% url 'training:beginner' %}">Beginner</a>                
+                        <a class="dropdown-item" href="{% url 'training:intermediate' %}">Intermediate</a>
                     </div>
                 </li>
                 <li class="nav-item">
