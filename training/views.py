@@ -7,6 +7,8 @@ from pyvis.network import Network
 from trainer.models import Trainer
 from trainee.models import Trainee
 from training.models import Training
+from facility.models import Facility
+from sports_gear.models import SportsGear
 # Create your views here.
 
 def index(request):
@@ -49,18 +51,26 @@ def add_expert_training(request):
     if request.method == 'POST':
         trainee = request.POST.get("trainee")
         trainer = request.POST.get("trainer")
+        facility = request.POST.get("facility")
+        training = request.POST.get("training")
         end_time = request.POST.get("end_time")
         start_time = request.POST.get("start_time")
+        sportsgear = request.POST.get("sportsgear")
         training_date = request.POST.get("training_date")
+        training_level = request.POST.get("training_level")
 
         try:
             training = Training.objects.create(
-                trainee = trainee,
-                trainer = trainer,
+                training = training,
                 end_time = end_time,
+                trainee_id = trainee,
+                trainer_id = trainer,
+                facility_id = facility,                
                 start_time = start_time,
                 training_type = "expert",
+                sportsgear_id = sportsgear,                              
                 training_date = training_date,
+                training_level = training_level,
             )
         except Exception as e:
             print("ERROR on Saving Training ", e)
@@ -73,34 +83,48 @@ def add_expert_training(request):
 
         return render(request, 'training/index.html', context)
     else:
+        facilities = Facility.objects.all()
+        sports_gear = SportsGear.objects.all()
         trainers = Trainer.objects.filter(trailer_level = "expert")
         trainees = Trainee.objects.filter(trailer_level = "expert")
 
         context = {
             "trainers": trainers,
-            "trainees": trainees
+            "trainees": trainees,
+            "facilities": facilities,
+            "sports_gear": sports_gear,
         }
 
         return render(request, 'training/add_expert_training.html', context)
 
 def add_beginner_training(request):
     if request.method == 'POST':
-        print("Begin saving ")
+        print("Saving Beginner Training!")
         trainee = request.POST.get("trainee")
         trainer = request.POST.get("trainer")
+        facility = request.POST.get("facility")
+        training = request.POST.get("training")
         end_time = request.POST.get("end_time")
         start_time = request.POST.get("start_time")
+        sportsgear = request.POST.get("sportsgear")
         training_date = request.POST.get("training_date")
+        training_level = request.POST.get("training_level")
 
         try:
-            training = Training.objects.create(
+            training_record = Training.objects.create(                
+                end_time = end_time,                
+                training = training,
                 trainee_id = trainee,
                 trainer_id = trainer,
-                end_time = end_time,
+                facility_id = facility,
                 start_time = start_time,
                 training_type = "beginner",
+                sportsgear_id = sportsgear,
                 training_date = training_date,
+                training_level = training_level
             )
+
+            print("Training record, ", training_record)
         except Exception as e:
             print("ERROR on Saving Training ", e)
         
@@ -112,33 +136,46 @@ def add_beginner_training(request):
 
         return render(request, 'training/index.html', context)
     else:
+        facilities = Facility.objects.all()
+        sports_gear = SportsGear.objects.all()
         trainers = Trainer.objects.filter(trailer_level = "beginner")
         trainees = Trainee.objects.filter(trailer_level = "beginner")
-
+        
         context = {
             "trainers": trainers,
-            "trainees": trainees
+            "trainees": trainees,
+            "facilities": facilities,
+            "sports_gear": sports_gear,
+
         }
 
         return render(request, 'training/add_beginner_training.html', context)
 
 def add_intermediate_training(request):
     if request.method == 'POST':
-        print("Begin saving ")
+        print("Saving Beginner Training!")
         trainee = request.POST.get("trainee")
         trainer = request.POST.get("trainer")
+        facility = request.POST.get("facility")
+        training = request.POST.get("training")
         end_time = request.POST.get("end_time")
         start_time = request.POST.get("start_time")
+        sportsgear = request.POST.get("sportsgear")
         training_date = request.POST.get("training_date")
+        training_level = request.POST.get("training_level")
 
         try:
-            training = Training.objects.create(
+            training = Training.objects.create(                
+                end_time = end_time,                
+                training = training,
                 trainee_id = trainee,
                 trainer_id = trainer,
-                end_time = end_time,
+                facility_id = facility,                
                 start_time = start_time,
-                training_type = "intermediate",
+                sportsgear_id = sportsgear,
                 training_date = training_date,
+                training_type = "intermediate",
+                training_level = training_level,
             )
         except Exception as e:
             print("ERROR on Saving Training ", e)
@@ -151,12 +188,16 @@ def add_intermediate_training(request):
 
         return render(request, 'training/index.html', context)
     else:
-        trainers = Trainer.objects.filter(trailer_level = "beginner")
-        trainees = Trainee.objects.filter(trailer_level = "beginner")
+        facilities = Facility.objects.all()
+        sports_gear = SportsGear.objects.all()
+        trainers = Trainer.objects.filter(trailer_level = "intermediate")
+        trainees = Trainee.objects.filter(trailer_level = "intermediate")
 
         context = {
             "trainers": trainers,
-            "trainees": trainees
+            "trainees": trainees,
+            "facilities": facilities,
+            "sports_gear": sports_gear,
         }
 
         return render(request, 'training/add_intermediate_training.html', context)
@@ -170,11 +211,13 @@ def expert_training_graph(request):
         if training_set:
             for training in training_set:
                 trainer = network.add_node(training.trainer.name, title="Trainer", color=" #335bff")
-                print("Trainer: ", trainer)
                 trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
-                print("Trainee: ", trainee)
-                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Expert Training", color="#F00")
-                print("Link Created!")
+                facility = network.add_node(training.facility.name, title="Facility", color=" #a1a405 ")
+                sports_gear = network.add_node(training.sportsgear.name, title="Sports gear", color="  #7b05a4 ")
+
+                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Beginner Training", color="#F00")
+                facility_link = network.add_edge(training.trainee.name, training.facility.name, title='Trained at', color="#F00")
+                gear_link = network.add_edge(training.trainee.name, training.sportsgear.name, title='Trained at', color="#F00")
         network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/expert_graph_creation.html')
     except Exception as e:
         print(e)
@@ -191,11 +234,13 @@ def beginner_training_graph(request):
         if training_set:
             for training in training_set:
                 trainer = network.add_node(training.trainer.name, title="Trainer", color=" #335bff")
-                print("Trainer: ", trainer)
                 trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
-                print("Trainee: ", trainee)
+                facility = network.add_node(training.facility.name, title="Facility", color=" #a1a405 ")
+                sports_gear = network.add_node(training.sportsgear.name, title="Sports gear", color="  #7b05a4 ")
+
                 training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Beginner Training", color="#F00")
-                print("Link Created!")
+                facility_link = network.add_edge(training.trainee.name, training.facility.name, title='Trained at', color="#F00")
+                gear_link = network.add_edge(training.trainee.name, training.sportsgear.name, title='Trained at', color="#F00")
         network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/beginner_graph_creation.html')
     except Exception as e:
         print(e)
@@ -212,11 +257,13 @@ def intermediate_training_graph(request):
         if training_set:
             for training in training_set:
                 trainer = network.add_node(training.trainer.name, title="Trainer", color=" #335bff")
-                print("Trainer: ", trainer)
                 trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
-                print("Trainee: ", trainee)
-                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Intermediate Training", color="#F00")
-                print("Link Created!")
+                facility = network.add_node(training.facility.name, title="Facility", color=" #a1a405 ")
+                sports_gear = network.add_node(training.sportsgear.name, title="Sports gear", color="  #7b05a4 ")
+
+                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Beginner Training", color="#F00")
+                facility_link = network.add_edge(training.trainee.name, training.facility.name, title='Trained at', color="#F00")
+                gear_link = network.add_edge(training.trainee.name, training.sportsgear.name, title='Trained at', color="#F00")
         network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/intermediate_graph_creation.html')
     except Exception as e:
         print(e)

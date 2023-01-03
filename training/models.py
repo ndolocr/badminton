@@ -14,7 +14,7 @@ class Training(models.Model):
     TRAINING_LEVEL_CHOICES = (
         ("Tactic training", "Tactic training"),
         ("Psychological training", "Psychological training"),
-        ("strenght and conditional workout", "strenght and conditional workout"),
+        ("Strength and conditional workout", "Strength and conditional workout"),
         ("Strength and conditioning workouts", "Strength and conditioning workouts"),
         ("Developing positivity when approaching a contest", "Developing positivity when approaching a contest"),
     )
