@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": " #335bff", "id": "Peter Ndolo", "label": "Peter Ndolo", "shape": "dot", "title": "Trainer"}, {"color": " #335bff", "id": "Raphael Ndolo", "label": "Raphael Ndolo", "shape": "dot", "title": "Trainer"}]);
-                  edges = new vis.DataSet([]);
+                  nodes = new vis.DataSet([{"color": " #335bff", "id": "Peter Ndolo", "label": "Peter Ndolo", "shape": "dot", "title": "Trainer"}, {"color": " #05a414 ", "id": "Rose Ndolo", "label": "Rose Ndolo", "shape": "dot", "title": "Trainee"}, {"color": " #335bff", "id": "Raphael Ndolo", "label": "Raphael Ndolo", "shape": "dot", "title": "Trainer"}, {"color": " #05a414 ", "id": "Stephan Mwelu", "label": "Stephan Mwelu", "shape": "dot", "title": "Trainee"}]);
+                  edges = new vis.DataSet([{"color": "#F00", "from": "Peter Ndolo", "label": "Expert Training", "title": "Trains", "to": "Rose Ndolo"}, {"color": "#F00", "from": "Raphael Ndolo", "label": "Expert Training", "title": "Trains", "to": "Stephan Mwelu"}, {"color": "#F00", "from": "Raphael Ndolo", "label": "Expert Training", "title": "Trains", "to": "Rose Ndolo"}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });

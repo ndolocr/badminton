@@ -170,8 +170,12 @@ def expert_training_graph(request):
         if training_set:
             for training in training_set:
                 trainer = network.add_node(training.trainer.name, title="Trainer", color=" #335bff")
-                print("Path = {}".format(str(settings.BASE_DIR)+'/training/templates/training/expert_graph_creation.html'))
-        network.save_graph(str(settings.BASE_DIR)+'training/templates/training/expert_graph_creation.html')
+                print("Trainer: ", trainer)
+                trainee = network.add_node(training.trainee.name, title="Trainee", color=" #05a414 ")
+                print("Trainee: ", trainee)
+                training_link = network.add_edge(training.trainer.name, training.trainee.name, title='Trains', label="Expert Training", color="#F00")
+                print("Link Created!")
+        network.save_graph(str(settings.BASE_DIR)+'/training/templates/training/expert_graph_creation.html')
     except Exception as e:
         print(e)
     
